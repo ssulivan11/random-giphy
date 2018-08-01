@@ -1,0 +1,79 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 15px;
+  background: #333;
+  position: relative;
+  font-family: Helvetica Neue;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  text-align: center;
+}
+
+#container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+}
+
+#content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.random-giphy__input {
+  text-align: center;
+  margin: 15px 0 25px;
+  font-size: 25px;
+  padding: 5px 0;
+  background: transparent;
+  width: 100%;
+  min-width: 500px;
+  border: none;
+  color: white;
+  border-bottom: 1px solid #666;
+}
+
+.random-giphy__button {
+  color: white;
+  background: transparent;
+  border: none;
+  font-style: italic;
+}
+
+.random-giphy__status {
+  font-style: italic;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  width: 100%;
+}
+
+.random-giphy__button:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}

@@ -1,0 +1,20 @@
+{
+  "engines": {
+    "node": ">=8"
+  },
+  "scripts": {
+    "build": "rm -f grg.zip && yarn compile && zip -r grg.zip client",
+    "compile": "webpack client/src/optionsPage.js --o client/options.js --f iife -p",
+    "test": "jest"
+  },
+  "cacheDirectories": [
+    "server/node_modules"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
+    "jest": "^21.1.0",
+    "webpack": "^4.16.3",
+    "webpack-cli": "^3.1.0"
+  }
+}

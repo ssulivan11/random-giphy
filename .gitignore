@@ -1,0 +1,6 @@
+.env
+node_modules
+client.crx
+client.pem
+grg.zip
+.DS_Store

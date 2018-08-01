@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Random Giphy Extension's Popup</title>
+    <style>
+      body {
+        padding: 25px;
+        background: #333;
+        font-family: Helvetica Neue;
+        color: #666;
+        max-width: 250px;
+      }
+      img {
+        border: 1px solid #666;
+        border-radius: 3px;
+        max-width: 250px;
+        height: auto;
+        background-color: #444;
+      }
+      #status {
+        white-space: pre;
+        text-overflow: ellipsis;
+        max-width: 250px;
+      }
+    </style>
+    <script src="popup.js"></script>
+  </head>
+  <body>
+    <div id="status"></div>
+    <img id="image-result" hidden>
+  </body>
+</html>

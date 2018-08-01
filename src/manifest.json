@@ -13,7 +13,7 @@
     "default_icon": "images/icon.png",
     "default_popup": "popup.html"
   },
-  "author": "Demi [demipel8@gmail.com]",
+  "author": "Scott [ssulivan11@gmail.com]",
    "commands": {
     "_execute_browser_action": {
       "suggested_key": {
@@ -22,7 +22,7 @@
         "chromeos": "Ctrl+Shift+A",
         "linux": "Ctrl+Shift+A"
       },
-      "description": "Get Giphy"
+      "description": "Getting Random Giphy"
     }
   },
   "minimum_chrome_version": "45.0",
@@ -36,5 +36,5 @@
     "https://tbdsa3t4af.execute-api.us-east-2.amazonaws.com/v1/*",
     "storage"
   ],
-  "short_name": "RG"
+  "short_name": "RandomGiphy"
 }

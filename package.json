@@ -1,16 +1,24 @@
 {
+  "name": "random-giphy",
+  "description": "Chrome extention for a random giphy return in markup format for things like reddit, PRs, and MRs. Simply send it a list of random things to get random gifs.",
+  "version": "1.0.0",
+  "license": "ISC",
+  "author": "ssulivan11",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ssulivan11/random-giphy"
+  },
+  "keywords": [
+    "giphy"
+  ],
   "engines": {
     "node": ">=8"
   },
   "scripts": {
-    "build": "rm -f grg.zip && yarn compile && zip -r grg.zip client",
-    "compile": "webpack client/src/optionsPage.js --o client/options.js --f iife -p",
+    "build": "webpack src/js/optionsPage.js --o src/options.js --f iife -p",
+    "build:zip": "rm -f randomGiphy.zip && zip -r randomGiphy.zip src",
     "test": "jest"
   },
-  "cacheDirectories": [
-    "server/node_modules"
-  ],
-  "license": "MIT",
   "devDependencies": {
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
     "jest": "^21.1.0",

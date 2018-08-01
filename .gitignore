@@ -2,5 +2,6 @@
 node_modules
 client.crx
 client.pem
-grg.zip
+randomGiphy.zip
 .DS_Store
+src/options.js

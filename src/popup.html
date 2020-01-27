@@ -1,32 +1,92 @@
 <!doctype html>
 <html>
-  <head>
-    <title>Random Giphy Extension's Popup</title>
-    <style>
-      body {
-        padding: 25px;
-        background: #333;
-        font-family: Helvetica Neue;
-        color: #666;
-        max-width: 250px;
-      }
-      img {
-        border: 1px solid #666;
-        border-radius: 3px;
-        max-width: 250px;
-        height: auto;
-        background-color: #444;
-      }
-      #status {
-        white-space: pre;
-        text-overflow: ellipsis;
-        max-width: 250px;
-      }
-    </style>
-    <script src="popup.js"></script>
-  </head>
-  <body>
-    <div id="status"></div>
+
+<head>
+  <title>Random Giphy Extension's Popup</title>
+  <style>
+    body {
+      padding: 15px;
+      background: #333;
+      font-size: 12px;
+      font-family: Helvetica Neue;
+      color: white;
+      max-width: 350px;
+    }
+
+    #title {
+      text-transform: capitalize;
+      font-size: 1.5em;
+      margin: 0;
+    }
+
+    #sub-title {
+      color: #ccc;
+      font-size: 0.95em;
+      font-style: italic;
+      margin: 5px 0 15px;
+    }
+
+    img {
+      border: 1px solid #666;
+      border-radius: 3px;
+      max-width: 348px;
+      height: auto;
+      background-color: #444;
+      min-width: 250px;
+    }
+
+    #status {
+      white-space: pre;
+      text-overflow: ellipsis;
+      max-width: 350px;
+    }
+
+    .label-input {
+      display: flex;
+      align-items: center;
+    }
+
+    label {
+      font-size: 1em;
+      width: 95px;
+      font-weight: bold;
+      padding: 0 5px 0 0;
+      text-align: right;
+    }
+
+    input {
+      font-size: 1em;
+      width: 100%;
+      border-radius: 3px;
+      background-color: #f0f0f0;
+      border: 1px solid #666;
+      padding: 3px 0 3px 3px;
+    }
+  </style>
+  <script src="popup.js"></script>
+</head>
+
+<body>
+  <div id='loading'>
+    <p id="status"></p>
+  </div>
+  <div id='complete' style='display: none;'>
+    <h1 id="title"></h1>
+    <h2 id="sub-title"></h2>
     <img id="image-result" hidden>
-  </body>
+    <p class='label-input'>
+      <label for='input-url'>Gif Url:</label>
+      <input id='input-url' />
+    </p>
+    <p class='label-input'>
+      <label for='input-giphy'>Giphy Url:</label>
+      <input id='input-giphy' />
+    </p>
+    <p class='label-input'>
+      <label for='input-markdown'>Markdown:</label>
+      <input id='input-markdown' />
+    </p>
+  </div>
+</body>
+
 </html>

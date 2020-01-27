@@ -1,24 +1,17 @@
-export default function Status(element) {
-  const TIME_MESSAGE_IS_VISIBLE = 0 // temp
+const Status = (element) => {
+  const TIME_MESSAGE_IS_VISIBLE = 750 // temp
 
-  function notifyUpdate() {
+  const notifyUpdate = () => {
     showUpdateMessage()
     setTimeout(hide, TIME_MESSAGE_IS_VISIBLE);
   }
-
-  function showUpdateMessage() {
-    render('options saved...')
-  }
-
-  function hide() {
-    render('')
-  }
-
-  function render(message) {
-    element.textContent = message;
-  }
+  const showUpdateMessage = () => render('Options saved...')
+  const hide = () => render('')
+  const render = (message) => element.textContent = message;
 
   return {
     notifyUpdate
   }
 }
+
+export default Status

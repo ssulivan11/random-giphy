@@ -1,6 +1,6 @@
 import Status from '../js/status'
 
-let test_element_factory = () => ({
+const test_element_factory = () => ({
   textContent: ''
 })
 

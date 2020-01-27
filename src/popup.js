@@ -11,26 +11,27 @@ const randomGif = () => {
     .catch(displayError)
 }
 
-const getTag = () => new Promise((resolve) => {
-  chrome.storage.sync.get('tag', items => resolve(items.tag || null))
-})
+const getTag = () =>
+  new Promise((resolve) => {
+    chrome.storage.sync.get('tag', (items) => resolve(items.tag || null))
+  })
 
 const formatURL = (tag) => {
-  const selectTags = tag && tag.split(",") || [
-    "animals",
-    "fail",
-    "funny",
-    "puppies",
-    "kittens",
-    "gaming",
-    "celebrate",
-    "reactions",
-    "dance",
-    "memes",
-    "dogs",
-    "wow",
-    "backflip",
-    "ok"
+  const selectTags = (tag && tag.split(',')) || [
+    'animals',
+    'fail',
+    'funny',
+    'puppies',
+    'kittens',
+    'gaming',
+    'celebrate',
+    'reactions',
+    'dance',
+    'memes',
+    'dogs',
+    'wow',
+    'backflip',
+    'ok'
   ]
   tags = selectTags[Math.floor(Math.random() * selectTags.length)]
 
@@ -48,7 +49,7 @@ const extractGif = (data) => {
 }
 
 const displayGif = (data = {}) => {
-  let gifContainer = document.getElementById('image-result')
+  const gifContainer = document.getElementById('image-result')
   gifContainer.width = data.images.downsized_large.width
   gifContainer.height = data.images.downsized_large.height
   gifContainer.src = data.images.downsized_large.url
@@ -58,18 +59,23 @@ const displayGif = (data = {}) => {
   renderContent('sub-title', `from: ${tags}`)
   renderInputContent('input-url', data.images.downsized_large.url)
   renderInputContent('input-giphy', data.bitly_url)
-  renderInputContent('input-markdown', `![](${data.images.downsized_large.url})`)
+  renderInputContent(
+    'input-markdown',
+    `![](${data.images.downsized_large.url})`
+  )
   return data
 }
 
 const copyToClipboard = (data) => {
-  let disposable = document.createElement('input')
+  const disposable = document.createElement('input')
   disposable.setAttribute('id', 'disposable_id')
-  document.body.appendChild(disposable);
-  document.getElementById('disposable_id').value = `![](${data.images.downsized_large.url})`
-  disposable.select();
-  document.execCommand('copy');
-  document.body.removeChild(disposable);
+  document.body.appendChild(disposable)
+  document.getElementById(
+    'disposable_id'
+  ).value = `![](${data.images.downsized_large.url})`
+  disposable.select()
+  document.execCommand('copy')
+  document.body.removeChild(disposable)
 }
 
 const setLoading = (isLoading) => {
@@ -82,8 +88,14 @@ const setLoading = (isLoading) => {
   }
 }
 
-const renderContent = (id, text) => document.getElementById(id).textContent = text
-const renderInputContent = (id, text) => document.getElementById(id).defaultValue = text
-const displayError = (message) => renderContent('status', `Sorry, cannot display a gif at the moment. ${message}`)
+const renderContent = (id, text) =>
+  (document.getElementById(id).textContent = text)
+const renderInputContent = (id, text) =>
+  (document.getElementById(id).defaultValue = text)
+const displayError = (message) =>
+  renderContent(
+    'status',
+    `Sorry, cannot display a gif at the moment. ${message}`
+  )
 
 document.addEventListener('DOMContentLoaded', randomGif)

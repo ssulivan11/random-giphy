@@ -3,11 +3,11 @@ const Status = (element) => {
 
   const notifyUpdate = () => {
     showUpdateMessage()
-    setTimeout(hide, TIME_MESSAGE_IS_VISIBLE);
+    setTimeout(hide, TIME_MESSAGE_IS_VISIBLE)
   }
   const showUpdateMessage = () => render('Options saved...')
   const hide = () => render('')
-  const render = (message) => element.textContent = message;
+  const render = (message) => (element.textContent = message)
 
   return {
     notifyUpdate

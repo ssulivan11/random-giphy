@@ -10,5 +10,5 @@
 ## Developer Installation
 
 - in chrome enable developer options for extentions
-- `yarn` and `yarn build`
+- then run `yarn && yarn build`
 - from [chrome://extensions/](chrome://extensions/) click _Load Unpacked_ and then choose the src folder

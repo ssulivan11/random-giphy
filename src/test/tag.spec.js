@@ -1,40 +1,40 @@
-import Tag from '../src/tag'
+import Tag from '../js/tag'
 
-let test_element_factory = () => ({
-	value: '',
-  addEventListener: () => {}
+const test_element_factory = (value = '') => ({
+  value,
+  addEventListener: () => { }
 })
 
 describe('Tag', () => {
   test('Name property tells the component name', () => {
-  	const test_element = test_element_factory()
-  	const tag = Tag(test_element)
+    const test_element = test_element_factory()
+    const tag = Tag(test_element)
 
-  	expect(tag.name).toBe('tag')
+    expect(tag.name).toBe('tag')
   })
 
   test('value can be asked through getValue', () => {
-  	const test_element = test_element_factory()
-  	const tag = Tag(test_element)
+    const test_element = test_element_factory('funny')
+    const tag = Tag(test_element)
 
-  	expect(tag.getValue()).toBe('ok')
+    expect(tag.getValue()).toBe('funny')
   })
 
-  test('default value is ok', () => {
-  	const test_element = test_element_factory()
-  	const tag = Tag(test_element)
+  test('default value is empty string', () => {
+    const test_element = test_element_factory()
+    const tag = Tag(test_element)
 
-  	expect(tag.getValue()).toBe('ok')
+    expect(tag.getValue()).toBe('')
   })
 
   test('can change the value through cahngeTo', () => {
-  	const test_element = test_element_factory()
-  	const tag = Tag(test_element)
-  	const newTag = 'newTag'
+    const test_element = test_element_factory()
+    const tag = Tag(test_element)
+    const newTag = 'newTag'
 
-  	tag.changeTo(newTag)
+    tag.changeTo(newTag)
 
-  	expect(tag.getValue()).toBe(newTag)
-  	expect(test_element.value).toBe(newTag)
+    expect(tag.getValue()).toBe(newTag)
+    expect(test_element.value).toBe(newTag)
   })
 })

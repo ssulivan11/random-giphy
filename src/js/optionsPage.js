@@ -15,40 +15,24 @@ document.addEventListener('DOMContentLoaded', () => {
   saveButton.onClick(save);
   saveForm.onSubmit(save);
 
-  function save() {
-    storage.set(tag.name, tag.getValue(), status.notifyUpdate)
-  }
-
-  function reset() {
-    storage.set('', tag.changeTo(''), status.notifyUpdate)
-  }
-
-  function restore() {
-    storage.get(tag.name, value => tag.changeTo(value))
-  }
+  const save = () => storage.set(tag.name, tag.getValue(), status.notifyUpdate)
+  const reset = () => storage.set('', tag.changeTo(''), status.notifyUpdate)
+  const restore = () => storage.get(tag.name, value => tag.changeTo(value))
 });
 
-function ResetButton(button) {
-  function onClick(callback) {
-    button.addEventListener('click', callback);
-  }
+const ResetButton = (button) => {
+  const onClick = (callback) => button.addEventListener('click', callback)
   return { onClick }
 }
 
-function SaveButton(button) {
-  function onClick(callback) {
-    button.addEventListener('click', callback);
-  }
+const SaveButton = (button) => {
+  const onClick = (callback) => button.addEventListener('click', callback);
   return { onClick }
 }
 
-function SaveForm(form) {
-  function onSubmit(callback) {
-    form.addEventListener('submit', callback);
-  }
+const SaveForm = (form) => {
+  const onSubmit = (callback) => form.addEventListener('submit', callback);
   return { onSubmit }
 }
 
-function getElement(name) {
-  return document.getElementById.call(document, name)
-}
+const getElement = (name) => document.getElementById.call(document, name)

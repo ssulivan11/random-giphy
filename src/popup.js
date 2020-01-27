@@ -1,6 +1,6 @@
-document.addEventListener('DOMContentLoaded', randomGif)
+let tags = ''
 
-function randomGif() {
+const randomGif = () => {
   getTag()
     .then(formatURL)
     .then(fetchURL)
@@ -11,13 +11,11 @@ function randomGif() {
     .catch(displayError)
 }
 
-function getTag() {
-  return new Promise((resolve, reject) => {
-    chrome.storage.sync.get('tag', items => resolve(items.tag || null))
-  })
-}
+const getTag = () => new Promise((resolve) => {
+  chrome.storage.sync.get('tag', items => resolve(items.tag || null))
+})
 
-function formatURL(tag) {
+const formatURL = (tag) => {
   const selectTags = tag && tag.split(",") || [
     "animals",
     "fail",
@@ -31,64 +29,61 @@ function formatURL(tag) {
     "memes",
     "dogs",
     "wow",
-    "england",
     "backflip",
     "ok"
   ]
-  const tags = selectTags[Math.floor(Math.random() * selectTags.length)]
+  tags = selectTags[Math.floor(Math.random() * selectTags.length)]
 
-  renderStatus(`performing search in giphy for ${tags}...`)
+  renderContent('status', `performing search in giphy for ${tags}...`)
   return `https://tbdsa3t4af.execute-api.us-east-2.amazonaws.com/v1/ramon?tag=${tags}`
 }
 
-function fetchURL(url) {
-  return fetch(url)
+const fetchURL = (url) => fetch(url)
+const parseJSON = (response) => response.json()
+
+const extractGif = (data) => {
+  if (!data || !data.image_url) return error('Sorry, no response from Giphy!')
+  setLoading(true)
+  return data
 }
 
-function parseJSON(response) {
-  return response.json()
-}
-
-function extractGif(data) {
-  if (!data || !data.image_url) return error('No response from Giphy!')
-
-  let url = data.image_url
-  let width = parseInt(data.image_width)
-  let height = parseInt(data.image_height)
-
-  return { url, width, height }
-}
-
-function displayGif(gif) {
+const displayGif = (data = {}) => {
   let gifContainer = document.getElementById('image-result')
-  console.warn(gif)
-  gifContainer.width = gif.width
-  gifContainer.height = gif.height
-  gifContainer.src = gif.url
+  gifContainer.width = data.images.downsized_large.width
+  gifContainer.height = data.images.downsized_large.height
+  gifContainer.src = data.images.downsized_large.url
   gifContainer.hidden = false
-  renderStatus('')
-
-  return gif
+  setLoading(false)
+  renderContent('title', data.title)
+  renderContent('sub-title', `from: ${tags}`)
+  renderInputContent('input-url', data.images.downsized_large.url)
+  renderInputContent('input-giphy', data.bitly_url)
+  renderInputContent('input-markdown', `![](${data.images.downsized_large.url})`)
+  return data
 }
 
-function copyToClipboard(gif) {
+const copyToClipboard = (data) => {
   let disposable = document.createElement('input')
   disposable.setAttribute('id', 'disposable_id')
-
   document.body.appendChild(disposable);
-  document.getElementById('disposable_id').value = `![](${gif.url})`
-
+  document.getElementById('disposable_id').value = `![](${data.images.downsized_large.url})`
   disposable.select();
-
   document.execCommand('copy');
-
   document.body.removeChild(disposable);
 }
 
-function renderStatus(text) {
-  document.getElementById('status').textContent = text
+const setLoading = (isLoading) => {
+  if (isLoading) {
+    document.getElementById('loading').style.display = 'block'
+    document.getElementById('complete').style.display = 'none'
+  } else {
+    document.getElementById('loading').style.display = 'none'
+    document.getElementById('complete').style.display = 'block'
+  }
 }
 
-function displayError(message) {
-  renderStatus(`Cannot display image. ${message}`)
-}
+const renderContent = (id, text) => document.getElementById(id).textContent = text
+const renderInputContent = (id, text) => document.getElementById(id).defaultValue = text
+const displayError = (message) => renderContent('status', `Sorry, cannot display a gif at the moment. ${message}`)
+
+document.addEventListener('DOMContentLoaded', randomGif)

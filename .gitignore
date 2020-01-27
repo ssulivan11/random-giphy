@@ -5,3 +5,4 @@ client.pem
 randomGiphy.zip
 .DS_Store
 src/options.js
+coverage

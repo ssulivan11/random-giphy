@@ -1,19 +1,14 @@
-export default function Storage(implenetation) {
-  const EMPTY_FUNCTION = () => {}
+const Storage = (implenetation) => {
+  const EMPTY_FUNCTION = () => { }
 
-  function set(key, value, userCallback) {
+  const set = (key, value, userCallback) => {
     const callback = validateCallback(userCallback)
-
     implenetation.set({ [key]: value }, callback)
   }
 
-  function get(key, callback) {
-    implenetation.get(key, items => callback(items[key]))
-  }
-
-  function validateCallback(callback) {
+  const get = (key, callback) => implenetation.get(key, items => callback(items[key]))
+  const validateCallback = (callback) => {
     if (callback == undefined) return EMPTY_FUNCTION
-
     return callback
   }
 
@@ -22,3 +17,5 @@ export default function Storage(implenetation) {
     get
   }
 }
+
+export default Storage

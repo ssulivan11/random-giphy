@@ -1,0 +1,164 @@
+body {
+  padding: 15px;
+  background: #333;
+  font-size: 12px;
+  color: white;
+  max-width: 350px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.title-container {
+  display: flex;
+}
+
+#title {
+  text-transform: capitalize;
+  font-size: 1.5em;
+  margin: 0;
+  flex: 1 1 auto;
+}
+
+#refresh-button {
+  background: #333;
+  color: white;
+  border: none;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  padding: 0;
+  transition: transform .25s ease-in-out;
+  transform: rotate(0deg);
+}
+
+#refresh-button:hover {
+  transform: rotate(360deg);
+}
+
+#sub-title {
+  color: #ccc;
+  font-size: 0.95em;
+  font-style: italic;
+  margin: 5px 0 15px;
+}
+
+img {
+  border: 1px solid #666;
+  border-radius: 3px;
+  max-width: 348px;
+  height: auto;
+  background-color: #444;
+  min-width: 250px;
+}
+
+#status {
+  white-space: pre;
+  text-overflow: ellipsis;
+  max-width: 350px;
+}
+
+.label-input {
+  display: flex;
+  align-items: center;
+}
+
+label {
+  font-size: 1em;
+  width: 40px;
+  height: 40px;
+  font-weight: bold;
+  padding: 0 5px 0 0;
+  text-align: right;
+  margin-left: -4px;
+}
+
+label .material-icons {
+  font-size: 40px;
+}
+
+input {
+  font-size: 1em;
+  width: 100%;
+  border-radius: 3px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  padding: 8px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
+#loading {
+  text-align: center;
+}
+
+#loading h3 {
+  font-size: 1.5em;
+  margin: 0;
+}
+
+#loading .material-icons {
+  font-size: 80px;
+  -webkit-animation: breathing 3s ease-out infinite normal;
+  animation: breathing 3s ease-out infinite normal;
+}
+
+@-webkit-keyframes breathing {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+
+  50% {
+    -webkit-transform: scale(2);
+    transform: scale(2);
+  }
+
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+@keyframes breathing {
+  0% {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+  }
+
+  50% {
+    -webkit-transform: scale(2);
+    -ms-transform: scale(2);
+    transform: scale(2);
+  }
+
+  100% {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+  }
+}

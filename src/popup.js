@@ -109,5 +109,3 @@ const displayError = (message) =>
   )
 
 document.addEventListener('DOMContentLoaded', randomGif)
-
-export default randomGif

@@ -4,7 +4,7 @@
 
 ### Popout
 
-![Imgur](https://i.imgur.com/8UpPXKb.png)
+![Imgur](https://imgur.com/a/Ept29jR)
 
 ### Options
 

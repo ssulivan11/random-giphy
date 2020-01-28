@@ -35,7 +35,7 @@ const formatURL = (tag) => {
   ]
   tags = selectTags[Math.floor(Math.random() * selectTags.length)]
 
-  renderContent('status', `performing search in giphy for ${tags}...`)
+  renderContent('status', `finding you a gif for:<br /><h3>${tags}</h3>`)
   return `https://tbdsa3t4af.execute-api.us-east-2.amazonaws.com/v1/ramon?tag=${tags}`
 }
 
@@ -63,6 +63,16 @@ const displayGif = (data = {}) => {
     'input-markdown',
     `![](${data.images.downsized_large.url})`
   )
+  const getNewGif = () => {
+    setLoading(true)
+    randomGif()
+    document
+      .getElementById('refresh-button')
+      .removeEventListener('click', getNewGif, false)
+  }
+  document
+    .getElementById('refresh-button')
+    .addEventListener('click', getNewGif, false)
   return data
 }
 
@@ -89,7 +99,7 @@ const setLoading = (isLoading) => {
 }
 
 const renderContent = (id, text) =>
-  (document.getElementById(id).textContent = text)
+  (document.getElementById(id).innerHTML = text)
 const renderInputContent = (id, text) =>
   (document.getElementById(id).defaultValue = text)
 const displayError = (message) =>

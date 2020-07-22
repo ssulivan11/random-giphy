@@ -24,13 +24,13 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "pre-push": "yarn test"
+      "pre-push": "npm run test"
     }
   },
   "lint-staged": {
     "*.{js,ts}": [
-      "yarn prettier",
-      "yarn lint"
+      "npm run prettier",
+      "npm run lint"
     ]
   },
   "devDependencies": {

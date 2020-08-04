@@ -12,6 +12,6 @@
 
 ## Developer Installation
 
-- in chrome enable developer options for extensions
-- then run `npm i && npm run build`
-- from [chrome://extensions/](chrome://extensions/) click _Load Unpacked_ and then choose the src folder
+- In the Chrome settings, enable developer options for extensions
+- Then run `npm i && npm run zip`
+- From [chrome://extensions/](chrome://extensions/) click _Load Unpacked_ and then choose the _public folder_

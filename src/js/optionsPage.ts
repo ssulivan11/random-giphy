@@ -35,4 +35,4 @@ const SaveForm = (form) => {
   return { onSubmit }
 }
 
-const getElement = (name) => document.getElementById(document, name)
+const getElement = (name) => document.getElementById(name)

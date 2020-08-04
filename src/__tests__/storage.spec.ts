@@ -1,7 +1,7 @@
 import Storage from '../js/storage'
 
 const fake_storage_factory = () => ({
-  dictionary: {},
+  dictionary: { key: '' },
   set(obj, callback) {
     this.dictionary = obj
     callback()
@@ -16,7 +16,7 @@ describe('Storage', () => {
     const fakeStorage = fake_storage_factory()
     const storage = Storage(fakeStorage)
 
-    storage.set('key', 'value')
+    storage.set('key', 'value', () => '')
 
     expect(fakeStorage.dictionary.key).toBe('value')
   })
@@ -36,7 +36,7 @@ describe('Storage', () => {
     const storage = Storage(fakeStorage)
     let value = ''
 
-    storage.set('key', 'value')
+    storage.set('key', 'value', () => '')
     storage.get('key', (response) => (value = response))
 
     expect(value).toBe('value')

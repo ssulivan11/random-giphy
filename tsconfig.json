@@ -2,5 +2,5 @@
   "compilerOptions": {
     "outDir": "./public"
   },
-  "inclue": ["./src/**/*"]
+  "include": ["./src/js/*", "./src/popup.ts"]
 }

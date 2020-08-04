@@ -1,1 +1,4 @@
 src/options.js
+
+public/js/*
+public/popup.js

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import Status from './status'
 import Tag from './tag'
 import Storage from './storage'

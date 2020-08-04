@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Random Giphy Options</title>
+    <link rel="stylesheet" type="text/css" href="options.css" />
+  </head>
+  <body>
+    <div id="container">
+      <div class="random-giphy" id="content">
+        <h1 class="sr-only">Random Giphy Options</h1>
+        <div class="random-giphy__container">
+          <form id="form">
+            <input
+              class="random-giphy__input"
+              placeholder="ex: kittens, dogs, memes"
+              type="text"
+              id="tag"
+            />
+            <button class="random-giphy__button" id="save">save</button>
+          </form>
+          <button class="random-giphy__button" id="reset">reset</button>
+        </div>
+        <div class="random-giphy__status" id="status"></div>
+      </div>
+    </div>
+    <script src="options.js"></script>
+  </body>
+</html>

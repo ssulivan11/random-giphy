@@ -17,7 +17,9 @@ describe('Storage', function() {
   test('Stores an element given its key', function() {
     var fakeStorage = fake_storage_factory()
     var storage = storage_1['default'](fakeStorage)
-    storage.set('key', 'value')
+    storage.set('key', 'value', function() {
+      return ''
+    })
     expect(fakeStorage.dictionary.key).toBe('value')
   })
   test('Calls a callback function after storing an element', function() {
@@ -33,7 +35,9 @@ describe('Storage', function() {
     var fakeStorage = fake_storage_factory()
     var storage = storage_1['default'](fakeStorage)
     var value = ''
-    storage.set('key', 'value')
+    storage.set('key', 'value', function() {
+      return ''
+    })
     storage.get('key', function(response) {
       return (value = response)
     })

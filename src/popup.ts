@@ -43,13 +43,27 @@ const fetchURL = (url) => fetch(url)
 const parseJSON = (response) => response.json()
 
 const extractGif = (data) => {
-  if (!data || !data.image_url) return error('Sorry, no response from Giphy!')
+  if (!data || !data.image_url) return Error('Sorry, no response from Giphy!')
   setLoading(true)
   return data
 }
 
-const displayGif = (data = {}) => {
-  const gifContainer = document.getElementById('image-result')
+const displayGif = (
+  data = {
+    title: '',
+    bitly_url: '',
+    images: {
+      downsized_large: {
+        width: 0,
+        height: 0,
+        url: ''
+      }
+    }
+  }
+) => {
+  const gifContainer = document.getElementById(
+    'image-result'
+  ) as HTMLImageElement
   gifContainer.width = data.images.downsized_large.width
   gifContainer.height = data.images.downsized_large.height
   gifContainer.src = data.images.downsized_large.url
@@ -80,9 +94,10 @@ const copyToClipboard = (data) => {
   const disposable = document.createElement('input')
   disposable.setAttribute('id', 'disposable_id')
   document.body.appendChild(disposable)
-  document.getElementById(
+  const disposableIdInput = document.getElementById(
     'disposable_id'
-  ).value = `![](${data.images.downsized_large.url})`
+  ) as HTMLInputElement
+  disposableIdInput.value = `![](${data.images.downsized_large.url})`
   disposable.select()
   document.execCommand('copy')
   document.body.removeChild(disposable)
@@ -100,8 +115,10 @@ const setLoading = (isLoading) => {
 
 const renderContent = (id, text) =>
   (document.getElementById(id).innerHTML = text)
-const renderInputContent = (id, text) =>
-  (document.getElementById(id).defaultValue = text)
+const renderInputContent = (id, text) => {
+  const defaultId = document.getElementById(id) as HTMLInputElement
+  return (defaultId.defaultValue = text)
+}
 const displayError = (message) =>
   renderContent(
     'status',

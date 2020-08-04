@@ -1,6 +1,5 @@
 'use strict'
 exports.__esModule = true
-// @ts-nocheck
 var status_1 = require('./status')
 var tag_1 = require('./tag')
 var storage_1 = require('./storage')
@@ -46,5 +45,5 @@ var SaveForm = function(form) {
   return { onSubmit: onSubmit }
 }
 var getElement = function(name) {
-  return document.getElementById(document, name)
+  return document.getElementById(name)
 }

@@ -7,7 +7,9 @@ var test_element_factory = function(value) {
   }
   return {
     value: value,
-    addEventListener: function() {}
+    addEventListener: function() {
+      return {}
+    }
   }
 }
 describe('Tag', function() {

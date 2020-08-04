@@ -1,14 +1,16 @@
 'use strict'
 exports.__esModule = true
-var Storage = function(implenetation) {
-  var EMPTY_FUNCTION = function() {}
+var Storage = function(implementation) {
+  var EMPTY_FUNCTION = function() {
+    return {}
+  }
   var set = function(key, value, userCallback) {
     var _a
     var callback = validateCallback(userCallback)
-    implenetation.set(((_a = {}), (_a[key] = value), _a), callback)
+    implementation.set(((_a = {}), (_a[key] = value), _a), callback)
   }
   var get = function(key, callback) {
-    return implenetation.get(key, function(items) {
+    return implementation.get(key, function(items) {
       return callback(items[key])
     })
   }

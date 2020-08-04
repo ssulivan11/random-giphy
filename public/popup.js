@@ -1,4 +1,3 @@
-// @ts-nocheck
 var tags = ''
 var randomGif = function() {
   getTag()
@@ -48,13 +47,23 @@ var parseJSON = function(response) {
   return response.json()
 }
 var extractGif = function(data) {
-  if (!data || !data.image_url) return error('Sorry, no response from Giphy!')
+  if (!data || !data.image_url) return Error('Sorry, no response from Giphy!')
   setLoading(true)
   return data
 }
 var displayGif = function(data) {
   if (data === void 0) {
-    data = {}
+    data = {
+      title: '',
+      bitly_url: '',
+      images: {
+        downsized_large: {
+          width: 0,
+          height: 0,
+          url: ''
+        }
+      }
+    }
   }
   var gifContainer = document.getElementById('image-result')
   gifContainer.width = data.images.downsized_large.width
@@ -86,8 +95,8 @@ var copyToClipboard = function(data) {
   var disposable = document.createElement('input')
   disposable.setAttribute('id', 'disposable_id')
   document.body.appendChild(disposable)
-  document.getElementById('disposable_id').value =
-    '![](' + data.images.downsized_large.url + ')'
+  var disposableIdInput = document.getElementById('disposable_id')
+  disposableIdInput.value = '![](' + data.images.downsized_large.url + ')'
   disposable.select()
   document.execCommand('copy')
   document.body.removeChild(disposable)
@@ -105,7 +114,8 @@ var renderContent = function(id, text) {
   return (document.getElementById(id).innerHTML = text)
 }
 var renderInputContent = function(id, text) {
-  return (document.getElementById(id).defaultValue = text)
+  var defaultId = document.getElementById(id)
+  return (defaultId.defaultValue = text)
 }
 var displayError = function(message) {
   return renderContent(

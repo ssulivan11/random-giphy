@@ -6,3 +6,5 @@ randomGiphy.zip
 .DS_Store
 public/options.js
 coverage
+public/*.js
+public/**/*.js

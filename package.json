@@ -29,7 +29,7 @@
     }
   },
   "lint-staged": {
-    "*.{ts}": [
+    "*.{ts,js,json,md}": [
       "npm run format",
       "npm run lint"
     ]

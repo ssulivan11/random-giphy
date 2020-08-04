@@ -2,7 +2,7 @@ import Tag from '../js/tag'
 
 const test_element_factory = (value = '') => ({
   value,
-  addEventListener: () => {}
+  addEventListener: () => ({})
 })
 
 describe('Tag', () => {

@@ -1,4 +1,3 @@
-// @ts-nocheck
 let tags = ''
 
 const randomGif = () => {

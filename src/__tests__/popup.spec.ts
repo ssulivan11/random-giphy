@@ -1,4 +1,4 @@
-import { formatURL, displayGif } from '../popup'
+import { formatURL, displayGif, extractGif, copyToClipboard } from '../popup'
 
 describe('Popup helper function formatURL', () => {
   test('should return default tags', () => {
@@ -46,9 +46,7 @@ describe('Popup helper function formatURL', () => {
 describe('Popup helper function displayGif', () => {
   test('should populate new gif ', () => {
     document.body.innerHTML = `<div><span id="complete" /><span id="loading" /><button id="refresh-button" /><input id="input-giphy" /><input id="input-url" /><input id="input-markdown" /><div id="sub-title" /><div id="title" /><span id="image-result" /></div>`
-
     const gifData = displayGif()
-
     document.getElementById('refresh-button').click()
     expect(gifData).toEqual({
       bitly_url: '',
@@ -56,5 +54,36 @@ describe('Popup helper function displayGif', () => {
       images: { downsized_large: { height: 0, url: '', width: 0 } },
       title: ''
     })
+  })
+})
+
+describe('Popup helper function extractGif', () => {
+  test('should return Error when invalid data', () => {
+    document.body.innerHTML = `<div></div>`
+    const extractGifNoData = extractGif({})
+    expect(extractGifNoData.toString()).toBe(
+      'Error: Sorry, no response from Giphy!'
+    )
+  })
+
+  test('should set loading and then return new data', () => {
+    document.body.innerHTML = `<div><span id="complete" /><span id="loading" /><button id="refresh-button" /><input id="input-giphy" /><input id="input-url" /><input id="input-markdown" /><div id="sub-title" /><div id="title" /><span id="image-result" /></div>`
+    const validGifObj = { image_url: 'testImage.png' }
+    const extractGifData = extractGif(validGifObj)
+    expect(extractGifData).toEqual(validGifObj)
+  })
+})
+
+describe('Popup helper function copyToClipboard', () => {
+  test('should return false if no data provided', () => {
+    const extractGifData = copyToClipboard({})
+    expect(extractGifData).toBe(false)
+  })
+
+  test('should copyToClipboard if all valid', () => {
+    document.body.innerHTML = `<div><span id="complete" /><span id="loading" /><button id="refresh-button" /><input id="input-giphy" /><input id="input-url" /><input id="input-markdown" /><div id="sub-title" /><div id="title" /><span id="image-result" /></div>`
+    document.execCommand = jest.fn()
+    const extractGifData = copyToClipboard()
+    expect(extractGifData).toBe(true)
   })
 })

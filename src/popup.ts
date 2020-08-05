@@ -17,6 +17,19 @@ interface Data {
   images: Images
 }
 
+const defaultData = {
+  title: '',
+  bitly_url: '',
+  image_url: '',
+  images: {
+    downsized_large: {
+      width: 0,
+      height: 0,
+      url: ''
+    }
+  }
+}
+
 export const randomGif = (): void => {
   getTag()
     .then(formatURL)
@@ -65,19 +78,6 @@ export const extractGif = (data) => {
   return data
 }
 
-const defaultData = {
-  title: '',
-  bitly_url: '',
-  image_url: '',
-  images: {
-    downsized_large: {
-      width: 0,
-      height: 0,
-      url: ''
-    }
-  }
-}
-
 export const displayGif = (data: Data = defaultData) => {
   const gifContainer = document.getElementById(
     'image-result'
@@ -108,17 +108,19 @@ export const displayGif = (data: Data = defaultData) => {
   return data
 }
 
-const copyToClipboard = (data) => {
+export const copyToClipboard = (data: Data = defaultData): boolean => {
+  if (!data?.images?.downsized_large) return false
   const disposable = document.createElement('input')
   disposable.setAttribute('id', 'disposable_id')
   document.body.appendChild(disposable)
   const disposableIdInput = document.getElementById(
     'disposable_id'
   ) as HTMLInputElement
-  disposableIdInput.value = `![](${data.images.downsized_large.url})`
+  disposableIdInput.value = `![](${data?.images.downsized_large.url})`
   disposable.select()
   document.execCommand('copy')
   document.body.removeChild(disposable)
+  return true
 }
 
 export const setLoading = (isLoading: boolean): string => {

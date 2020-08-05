@@ -1,6 +1,23 @@
 let tags = ''
 
-const randomGif = () => {
+interface DownSizedLarge {
+  width: number
+  height: number
+  url: string
+}
+
+interface Images {
+  downsized_large: DownSizedLarge
+}
+
+interface Data {
+  title: string
+  bitly_url: string
+  image_url: string
+  images: Images
+}
+
+export const randomGif = (): void => {
   getTag()
     .then(formatURL)
     .then(fetchURL)
@@ -11,12 +28,12 @@ const randomGif = () => {
     .catch(displayError)
 }
 
-const getTag = () =>
-  new Promise((resolve) => {
+export const getTag = (): Promise<string> =>
+  new Promise((resolve: (value?: string) => void) => {
     chrome.storage.sync.get('tag', (items) => resolve(items.tag || null))
   })
 
-const formatURL = (tag) => {
+export const formatURL = (tag?: string): string => {
   const selectTags = (tag && tag.split(',')) || [
     'animals',
     'fail',
@@ -39,28 +56,29 @@ const formatURL = (tag) => {
   return `https://tbdsa3t4af.execute-api.us-east-2.amazonaws.com/v1/ramon?tag=${tags}`
 }
 
-const fetchURL = (url) => fetch(url)
-const parseJSON = (response) => response.json()
+export const fetchURL = (url: string): Promise<Response> => fetch(url)
+export const parseJSON = (response: Body): Promise<Response> => response.json()
 
-const extractGif = (data) => {
+export const extractGif = (data) => {
   if (!data || !data.image_url) return Error('Sorry, no response from Giphy!')
   setLoading(true)
   return data
 }
 
-const displayGif = (
-  data = {
-    title: '',
-    bitly_url: '',
-    images: {
-      downsized_large: {
-        width: 0,
-        height: 0,
-        url: ''
-      }
+const defaultData = {
+  title: '',
+  bitly_url: '',
+  image_url: '',
+  images: {
+    downsized_large: {
+      width: 0,
+      height: 0,
+      url: ''
     }
   }
-) => {
+}
+
+export const displayGif = (data: Data = defaultData) => {
   const gifContainer = document.getElementById(
     'image-result'
   ) as HTMLImageElement
@@ -103,23 +121,24 @@ const copyToClipboard = (data) => {
   document.body.removeChild(disposable)
 }
 
-const setLoading = (isLoading) => {
+export const setLoading = (isLoading: boolean): string => {
   if (isLoading) {
     document.getElementById('loading').style.display = 'block'
-    document.getElementById('complete').style.display = 'none'
-  } else {
-    document.getElementById('loading').style.display = 'none'
-    document.getElementById('complete').style.display = 'block'
+    return (document.getElementById('complete').style.display = 'none')
   }
+  document.getElementById('loading').style.display = 'none'
+  return (document.getElementById('complete').style.display = 'block')
 }
 
-const renderContent = (id, text) =>
+export const renderContent = (id: string, text: string): string =>
   (document.getElementById(id).innerHTML = text)
-const renderInputContent = (id, text) => {
+
+export const renderInputContent = (id: string, text: string): string => {
   const defaultId = document.getElementById(id) as HTMLInputElement
   return (defaultId.defaultValue = text)
 }
-const displayError = (message) =>
+
+export const displayError = (message: string): string =>
   renderContent(
     'status',
     `Sorry, cannot display a gif at the moment. ${message}`

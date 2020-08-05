@@ -20,12 +20,12 @@
     "zip": "tsc && rm -f randomGiphy.zip && zip -r randomGiphy.zip public",
     "lint": "eslint 'src/**/*.ts'",
     "format": "prettier --write '**/*.{ts,js,json,md}'",
-    "test": "jest --coverage"
+    "test": "jest"
   },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "pre-push": "npm run test"
+      "pre-push": "npm run test -- --coverage"
     }
   },
   "lint-staged": {

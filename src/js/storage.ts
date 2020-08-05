@@ -1,15 +1,13 @@
 const Storage = (implementation) => {
-  const EMPTY_FUNCTION = () => ({})
-
   const set = (key, value, userCallback) => {
     const callback = validateCallback(userCallback)
     implementation.set({ [key]: value }, callback)
   }
 
-  const get = (key, callback) =>
+  const get = (key: string, callback) =>
     implementation.get(key, (items) => callback(items[key]))
-  const validateCallback = (callback) => {
-    if (callback === undefined) return EMPTY_FUNCTION
+  const validateCallback = (callback: string) => {
+    if (!callback) return () => ({})
     return callback
   }
 

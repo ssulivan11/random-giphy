@@ -4,35 +4,39 @@ import Storage from './storage'
 
 document.addEventListener('DOMContentLoaded', () => {
   const storage = Storage(chrome.storage.sync)
-  const tag = Tag(getElement('tag'))
-  const status = Status(getElement('status'))
-  const resetButton = ResetButton(getElement('reset'))
-  const saveButton = SaveButton(getElement('save'))
-  const saveForm = SaveForm(getElement('form'))
+  const tag = Tag(document.getElementById('tag'))
+  const status = Status(document.getElementById('status'))
 
-  const save = () => storage.set(tag.name, tag.getValue(), status.notifyUpdate)
-  const reset = () => storage.set('', tag.changeTo(''), status.notifyUpdate)
-  const restore = () => storage.get(tag.name, (value) => tag.changeTo(value))
-
+  // restore
+  const restore = () =>
+    storage.get(tag.name, (value: string) => tag.changeTo(value))
   restore()
+  // reset
+  const resetButton = ResetButton(document.getElementById('reset'))
+  const reset = () => storage.set('', tag.changeTo(''), status.notifyUpdate)
   resetButton.onClick(reset)
+  // save
+  const saveButton = SaveButton(document.getElementById('save'))
+  const saveForm = SaveForm(document.getElementById('form'))
+  const save = () => storage.set(tag.name, tag.getValue(), status.notifyUpdate)
   saveButton.onClick(save)
   saveForm.onSubmit(save)
 })
 
-const ResetButton = (button) => {
-  const onClick = (callback) => button.addEventListener('click', callback)
+const ResetButton = (button: HTMLElement) => {
+  const onClick = (callback: EventListenerOrEventListenerObject) =>
+    button.addEventListener('click', callback)
   return { onClick }
 }
 
-const SaveButton = (button) => {
-  const onClick = (callback) => button.addEventListener('click', callback)
+const SaveButton = (button: HTMLElement) => {
+  const onClick = (callback: EventListenerOrEventListenerObject) =>
+    button.addEventListener('click', callback)
   return { onClick }
 }
 
-const SaveForm = (form) => {
-  const onSubmit = (callback) => form.addEventListener('submit', callback)
+const SaveForm = (form: HTMLElement) => {
+  const onSubmit = (callback: EventListenerOrEventListenerObject) =>
+    form.addEventListener('submit', callback)
   return { onSubmit }
 }
-
-const getElement = (name) => document.getElementById(name)

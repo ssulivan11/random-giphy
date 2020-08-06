@@ -48,6 +48,7 @@
     "jest": "^26.2.2",
     "lint-staged": "^10.2.11",
     "prettier": "^1.19.1",
+    "rewire": "^5.0.0",
     "ts-loader": "^8.0.2",
     "typescript": "^3.9.7",
     "webpack": "^4.44.1",

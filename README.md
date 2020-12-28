@@ -1,4 +1,4 @@
-# Random Giphy
+# 🍀 Random Giphy
 
 > Chrome extension for a random [Giphy](https://giphy.com/) return in markup format for things like Pull Request and Reddit. Simply send it a list of random things to receive random Gifs.
 

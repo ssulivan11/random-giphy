@@ -2,11 +2,11 @@ import Storage from '../js/storage'
 
 const fake_storage_factory = () => ({
   dictionary: { key: '' },
-  set(obj, callback) {
+  set(obj: string, callback: () => void) {
     this.dictionary = obj
     callback()
   },
-  get(key, callback) {
+  get(key: boolean, callback: (unknown) => void) {
     callback(this.dictionary)
   }
 })
@@ -37,7 +37,7 @@ describe('Storage', () => {
     let value = ''
 
     storage.set('key', 'value', () => '')
-    storage.get('key', (response) => (value = response))
+    storage.get('key', (response: string) => (value = response))
 
     expect(value).toBe('value')
   })

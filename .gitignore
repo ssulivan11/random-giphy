@@ -6,3 +6,4 @@ randomGiphy.zip
 .DS_Store
 public/options.js
 coverage
+.vscode

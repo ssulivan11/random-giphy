@@ -1,4 +1,6 @@
-const Status = (element) => {
+const Status = (element: {
+  textContent: string
+}): { notifyUpdate: () => void } => {
   const TIME_MESSAGE_IS_VISIBLE = 750 // temp
 
   const notifyUpdate = () => {

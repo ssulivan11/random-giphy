@@ -20,12 +20,12 @@
     "zip": "tsc && rm -f randomGiphy.zip && zip -r randomGiphy.zip public",
     "lint": "eslint 'src/**/*.ts'",
     "format": "prettier --write '**/*.{ts,js,json,md}'",
-    "test": "jest --coverage"
+    "test": "jest"
   },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "pre-push": "npm run test"
+      "pre-push": "npm run test -- --coverage"
     }
   },
   "lint-staged": {
@@ -35,7 +35,7 @@
     ]
   },
   "devDependencies": {
-    "@babel/core": "^7.11.0",
+    "@babel/core": "^7.11.1",
     "@babel/preset-env": "^7.11.0",
     "@babel/preset-typescript": "^7.10.4",
     "@types/chrome": "0.0.122",
@@ -45,20 +45,21 @@
     "babel-jest": "^26.2.2",
     "eslint": "^6.8.0",
     "husky": "^4.2.1",
-    "jest": "^25.5.4",
+    "jest": "^26.2.2",
     "lint-staged": "^10.2.11",
     "prettier": "^1.19.1",
+    "rewire": "^5.0.0",
     "ts-loader": "^8.0.2",
     "typescript": "^3.9.7",
-    "webpack": "^4.41.5",
+    "webpack": "^4.44.1",
     "webpack-cli": "^3.3.10"
   },
   "jest": {
     "coverageThreshold": {
       "global": {
-        "statements": 92,
-        "branches": 50,
-        "functions": 88,
+        "statements": 94,
+        "branches": 82,
+        "functions": 84,
         "lines": 100
       }
     }
